@@ -8,6 +8,10 @@ import javax.annotation.Nonnull;
  */
 public abstract class CommandHandler {
 
+    protected static final String ROOT = ".gud";
+    protected static final String OBJECTS = "objects";
+    protected static final String REFS = "refs";
+
     protected final String[] args;
 
     /**
@@ -25,5 +29,5 @@ public abstract class CommandHandler {
      * Outputs success or failure status to the console.
      */
     public abstract void handleCommand();
-    
+
 }
