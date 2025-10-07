@@ -3,7 +3,7 @@ package com.epochalypse.hmgit.filehandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FileHandlerProviderTest {
+class FileHandlerProviderTest {
 
     @Test
     void testGetInstance() {

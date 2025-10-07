@@ -1,6 +1,8 @@
 package com.epochalypse.hmgit.commandhandler;
 
 import com.epochalypse.hmgit.filehandler.FileHandlerProvider;
+import com.epochalypse.hmgit.sha1service.SHA1ServiceProvider;
+import com.epochalypse.hmgit.zipservice.ZipServiceProvider;
 
 import javax.annotation.Nonnull;
 
@@ -33,6 +35,17 @@ public class CommandHandlerFactory {
             case InitCommandHandler.COMMAND_NAME -> new InitCommandHandler(
                     args,
                     FileHandlerProvider.getInstance()
+            );
+            case CatFileCommandHandler.COMMAND_NAME -> new CatFileCommandHandler(
+                    args,
+                    FileHandlerProvider.getInstance(),
+                    ZipServiceProvider.getInstance()
+            );
+            case HashObjectCommandHandler.COMMAND_NAME -> new HashObjectCommandHandler(
+                    args,
+                    FileHandlerProvider.getInstance(),
+                    ZipServiceProvider.getInstance(),
+                    SHA1ServiceProvider.getInstance()
             );
             default -> new HelpCommandHandler( args );
         };

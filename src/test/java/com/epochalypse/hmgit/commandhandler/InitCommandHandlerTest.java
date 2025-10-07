@@ -1,18 +1,18 @@
 package com.epochalypse.hmgit.commandhandler;
 
-import com.epochalypse.hmgit.filehandler.mocks.FileExistsFileHandlerMock;
-import com.epochalypse.hmgit.filehandler.mocks.HappyFileHandlerMock;
-import com.epochalypse.hmgit.filehandler.mocks.ThrowExceptionFileHandlerMock;
+import com.epochalypse.hmgit.filehandler.MockFileHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class InitCommandHandlerTest extends CommandHandlerTest {
+class InitCommandHandlerTest extends CommandHandlerTest {
+
+    private final String[] testArgs = new String[]{ InitCommandHandler.COMMAND_NAME };
 
     @Test
     void testHandleCommand_Success() {
         CommandHandler underTest = new InitCommandHandler(
-                new String[]{ InitCommandHandler.COMMAND_NAME },
-                new HappyFileHandlerMock()
+                testArgs,
+                new MockFileHandler( false )
         );
 
         Assertions.assertDoesNotThrow( underTest::handleCommand );
@@ -23,21 +23,28 @@ public class InitCommandHandlerTest extends CommandHandlerTest {
     @Test
     void testHandleCommand_HandleAlreadyInitialized() {
         CommandHandler underTest = new InitCommandHandler(
-                new String[]{ InitCommandHandler.COMMAND_NAME },
-                new FileExistsFileHandlerMock()
+                testArgs,
+                new MockFileHandler( true )
         );
 
         Assertions.assertDoesNotThrow( underTest::handleCommand );
+        String output = getSystemOutput();
+        Assertions.assertTrue( output.isEmpty() );
     }
 
     @Test
     void testHandleCommand_HandleIOException() {
         CommandHandler underTest = new InitCommandHandler(
-                new String[]{ InitCommandHandler.COMMAND_NAME },
-                new ThrowExceptionFileHandlerMock()
+                testArgs,
+                new MockFileHandler(
+                        true,
+                        true,
+                        true )
         );
 
         Assertions.assertDoesNotThrow( underTest::handleCommand );
+        String output = getSystemOutput();
+        Assertions.assertTrue( output.isEmpty() );
     }
 
 }

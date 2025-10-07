@@ -1,6 +1,8 @@
 package com.epochalypse.hmgit.commandhandler;
 
 import javax.annotation.Nonnull;
+import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Abstract Command Handler implementation.
@@ -29,5 +31,17 @@ public abstract class CommandHandler {
      * Outputs success or failure status to the console.
      */
     public abstract void handleCommand();
+
+    //TODO Move to its own service
+    protected File getObjectFileFromHash( String hash ) {
+        //First two characters of the hash are the directory name
+        String directory = hash.substring( 0, 2 );
+
+        //Remaining characters are the file name
+        String fileName = hash.substring( 2 );
+
+        Path path = Path.of( ROOT, OBJECTS, directory, fileName );
+        return new File( path.toUri() );
+    }
 
 }

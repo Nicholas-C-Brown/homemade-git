@@ -23,12 +23,12 @@ class FileHandlerImpl implements FileHandler {
     }
 
     @Override
-    public void write( File file, String content ) throws IOException {
-        write( file, content.getBytes() );
+    public void createAndWrite( File file, String content ) throws IOException {
+        createAndWrite( file, content.getBytes() );
     }
 
     @Override
-    public void write( File file, byte[] content ) throws IOException {
+    public void createAndWrite( File file, byte[] content ) throws IOException {
         Files.write( file.toPath(), content );
     }
 

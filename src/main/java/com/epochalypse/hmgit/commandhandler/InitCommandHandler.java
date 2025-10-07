@@ -13,18 +13,19 @@ import java.util.logging.Logger;
  */
 public class InitCommandHandler extends CommandHandler {
 
-    private final Logger logger = Logger.getLogger( getClass().getName() );
-
     public static final String COMMAND_NAME = "init";
+
+    private final Logger logger = Logger.getLogger( getClass().getName() );
 
     private final FileHandler fileHandler;
 
     /**
      * Creates a new {@link InitCommandHandler} instance
      *
-     * @param args supplied program arguments (Cannot be null)
+     * @param args        supplied program arguments (Cannot be null)
+     * @param fileHandler a {@link FileHandler} instance (Cannot be null)
      */
-    InitCommandHandler( @Nonnull String[] args, FileHandler fileHandler ) {
+    InitCommandHandler( @Nonnull String[] args, @Nonnull FileHandler fileHandler ) {
         super( args );
         this.fileHandler = fileHandler;
     }
@@ -45,7 +46,7 @@ public class InitCommandHandler extends CommandHandler {
             fileHandler.createDirectories( refs );
 
             File head = new File( root, "HEAD" );
-            fileHandler.write( head, "ref: refs/heads/main\n" );
+            fileHandler.createAndWrite( head, "ref: refs/heads/main\n" );
 
             System.out.println( "Initialized git directory" );
 

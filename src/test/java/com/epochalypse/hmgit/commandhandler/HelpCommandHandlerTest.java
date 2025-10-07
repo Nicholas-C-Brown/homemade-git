@@ -3,7 +3,7 @@ package com.epochalypse.hmgit.commandhandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class HelpCommandHandlerTest extends CommandHandlerTest {
+class HelpCommandHandlerTest extends CommandHandlerTest {
 
     @Test
     void testHandleCommand() {

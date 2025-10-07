@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class FileHandlerTest {
+class FileHandlerTest {
 
     private FileHandler underTest;
 
@@ -53,9 +53,9 @@ public class FileHandlerTest {
     }
 
     @Test
-    void testWriteFile_String() throws IOException {
+    void testCreateAndWriteFile_String() throws IOException {
         String writeString = "test";
-        underTest.write( testTextFile, writeString );
+        underTest.createAndWrite( testTextFile, writeString );
 
         Assertions.assertTrue( testTextFile.exists() );
 
@@ -64,9 +64,9 @@ public class FileHandlerTest {
     }
 
     @Test
-    void testWriteFile_ByteArray() throws IOException {
+    void testCreateAndWriteFile_ByteArray() throws IOException {
         byte[] writeBytes = "test".getBytes();
-        underTest.write( testTextFile, writeBytes );
+        underTest.createAndWrite( testTextFile, writeBytes );
 
         Assertions.assertTrue( testTextFile.exists() );
 

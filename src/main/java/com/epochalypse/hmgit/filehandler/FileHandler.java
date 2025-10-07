@@ -39,23 +39,23 @@ public interface FileHandler {
     byte[] read( @Nonnull File file ) throws IOException;
 
     /**
-     * Writes string contents to a file
+     * Creates and writes string contents to a file (Will overwrite if exists)
      *
      * @param file    a file
      * @param content the string content to write
      *
      * @throws IOException if an issue occurs while writing to the file
      */
-    void write( File file, String content ) throws IOException;
+    void createAndWrite( File file, String content ) throws IOException;
 
     /**
-     * Writes {@code byte[]} contents to a file
+     * Creates and writes {@code byte[]} contents to a file (Will overwrite if exists)
      *
      * @param file    a file
      * @param content the {@code byte[]} content to write
      *
      * @throws IOException if an issue occurs while writing to the file
      */
-    void write( File file, byte[] content ) throws IOException;
+    void createAndWrite( File file, byte[] content ) throws IOException;
 
 }
